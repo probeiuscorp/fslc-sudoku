@@ -18,6 +18,10 @@
   justify-content: center;
 }
 
+.original-cell {
+  font-weight: bold;
+}
+
 #game-board.board-invalid .sudoku-grid {
   border-color: red;
 }

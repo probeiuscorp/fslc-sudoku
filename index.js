@@ -21,7 +21,7 @@ const initialBoard = {
 initialBoard.__initialCells = new Set()
 for (let i = 0; i < 81; i++) {
   if (initialBoard.__cells[i] != _){
-    initialBoard.__initialCells.add([i/9|0, i%9])
+    initialBoard.__initialCells.add(i)
   }
 }
 
@@ -57,8 +57,11 @@ function writeBoardToDocument(node, board) {
     const cell = document.createElement('div');
     cell.tabIndex = 0;
     cell.dataset.icol = i % 9;
-    cell.dataset.irow = Math.floor(i / 9);
+    cell.dataset.irow = i / 9 | 0;
     cell.className = 'sudoku-cell';
+    if (initialBoard.__initialCells.has(i)) {
+      cell.classList.add('original-cell')
+    }
     if (digit !== undefined) {
       cell.innerHTML = digit;
     }
