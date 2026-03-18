@@ -1,6 +1,10 @@
 /* TODO: Make the borders between 3x3 subgrids thicker */
 /* matching off data-icol and data-irow may be useful */
 
+.big {
+  font-size: 32px;
+}
+
 .sudoku-grid {
   display: grid;
   width: max-content;
