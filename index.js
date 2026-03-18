@@ -18,6 +18,13 @@ const initialBoard = {
   // that were initially filled out and so should not be changed in
   // the withDifferentCell function (you should make that code change too!)
 }
+initialBoard.__initialCells = new Set()
+for (let i = 0; i < 81; i++) {
+  if (initialBoard.__cells[i] != _){
+    initialBoard.__initialCells.add(i)
+  }
+}
+
 // users of boards should only use these functions
 function getRowMajor(board) {
   return board.__cells;
@@ -62,8 +69,11 @@ function writeBoardToDocument(node, board) {
     const cell = document.createElement('div');
     cell.tabIndex = 0;
     cell.dataset.icol = i % 9;
-    cell.dataset.irow = Math.floor(i / 9);
+    cell.dataset.irow = i / 9 | 0;
     cell.className = 'sudoku-cell';
+    if (initialBoard.__initialCells.has(i)) {
+      cell.classList.add('original-cell')
+    }
     if (digit !== undefined) {
       cell.innerHTML = digit;
     }
