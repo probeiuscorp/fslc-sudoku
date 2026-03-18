@@ -45,7 +45,7 @@ function get3x3s(board) {
 }
 function withDifferentCell(board, icol, irow, digit) {
   const copy = board.__cells.slice();
-  copy[icol * 9 + irow] = digit;
+  copy[icol + irow * 9] = digit;
   return { __cells: copy };
 }
 
@@ -81,9 +81,13 @@ let currentBoard = initialBoard;
 superContainer.addEventListener('keydown', (e) => {
   const maybeDigit = +e.key;
   const targetCell = e.target;
-  // TODO: validate maybeDigit and targetCell
-  // if valid use withDifferentCell to make a new board and assign it to currentBoard
-  notifyNewBoard(currentBoard);
+  if (!isNaN(maybeDigit) && targetCell.dataset.icol) {
+    const icol = +targetCell.dataset.icol;
+    const irow = +targetCell.dataset.irow;
+    const newBoard = withDifferentCell(currentBoard, icol, irow, maybeDigit);
+    currentBoard = newBoard;
+    notifyNewBoard(currentBoard);
+  }
 });
 
 // system to validate board
