@@ -16,7 +16,7 @@ const initialBoard = {
   ],
   // TODO: add __initialCells, a set of which indices (in row-major)
   // that were initially filled out and so should not be changed in
-  // the withDifferentCell function
+  // the withDifferentCell function (you should make that code change too!)
 }
 // users of boards should only use these functions
 function getRowMajor(board) {
@@ -27,11 +27,13 @@ function getRows(board) {
     return board.__cells.slice(i * 9, (i + 1) * 9);
   });
 }
-// TODO: Implement getColumns and get3x3s
+// TODO: Implement getColumns and get3x3s. They should return an array of arrays
 function getColumns(board) {
+  // return something like [[_, 5, _, 2, 6, _, _, 7, _], ...]
   return [];
 }
 function get3x3s(board) {
+  // return something like [[_, _, _, 5, 8, 3, _, _, _], ...]
   return [];
 }
 function withDifferentCell(board, icol, irow, digit) {
